@@ -11,12 +11,18 @@
     </tr>
     {% for expense in expenses %}
     <tr>
-        <td>{{ expense[1] }}</td>
-        <td>${{ expense[2] }}</td>
-        <td>{{ expense[3] }}</td>
-        <td>{{ expense[4] }}</td>
+        <td>{{ expense['description'] }}</td>
+        <td>${{ expense['amount']|round(2) }}</td>
+        <td>{{ expense['category'] }}</td>
+        <td>{{ expense['date'] }}</td>
     </tr>
     {% endfor %}
+    <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>${{ total|round(2) }}</strong></td>
+        <td colspan="2"></td>
+    </tr>
+
 </table>
 </div>
 {% endblock %}

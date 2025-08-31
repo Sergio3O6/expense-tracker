@@ -17,15 +17,22 @@ def init_db():
     conn.commit()
     conn.close()
 
-#Homepage for all the expenses to be shown
-@app.route('/')
-def index():
+# Helper to get expenses and total
+def get_expenses():
     conn = sqlite3.connect('expenses.db')
+    conn.row_factory = sqlite3.Row
     c = conn.cursor()
     c.execute("SELECT * FROM expenses")
     expenses = c.fetchall()
+    total = sum([expense['amount'] for expense in expenses])
     conn.close()
-    return render_template('index.html', expenses=expenses)
+    return expenses, total
+
+#Homepage for all the expenses to be shown
+@app.route('/')
+def index():
+    expenses, total = get_expenses()
+    return render_template('index.html', expenses=expenses, total=total)
 
 #Adds new expense to table
 @app.route('/add', methods=['GET', 'POST'])
@@ -61,27 +68,20 @@ def del_expense(expense_id):
 #Page to show all expenses with a delete button
 @app.route('/delete_page')
 def delete_page():
-    conn = sqlite3.connect('expenses.db')
-    c = conn.cursor()
-    c.execute("SELECT * FROM expenses")
-    expenses = c.fetchall()
-    conn.close()
-    return render_template('delete_expense.html', expenses=expenses)
+    expenses, total = get_expenses()
+    return render_template('delete_expense.html', expenses=expenses, total=total)
 
 #Page to show all expenses with an edit button
 @app.route('/edit_page')
 def edit_page():
-    conn = sqlite3.connect("expenses.db")
-    c = conn.cursor()
-    c.execute('SELECT * FROM expenses')
-    expenses = c.fetchall()
-    conn.close()
-    return render_template('edit_page.html', expenses=expenses)
+    expenses, total = get_expenses()
+    return render_template('edit_page.html', expenses=expenses, total=total)
 
 #Edit a single expense
 @app.route('/edit/<int:expense_id>', methods=["GET", "POST"])
 def edit_expense(expense_id):
     conn = sqlite3.connect('expenses.db')
+    conn.row_factory = sqlite3.Row
     c = conn.cursor()
     
     if request.method == "POST":
@@ -104,6 +104,9 @@ def edit_expense(expense_id):
     
     c.execute("SELECT * FROM expenses WHERE id=?", (expense_id,))
     expense = c.fetchone()
+    if not expense:
+        flash("Expense not found.")
+        return redirect(url_for("edit_page"))
     conn.close()
     return render_template("edit_single.html", expense=expense)
 
