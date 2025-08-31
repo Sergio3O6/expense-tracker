@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
     <h1>Expense Tracker</h1>
     <nav>
         <a href="{{ url_for('index') }}">Home</a>|
@@ -12,6 +13,7 @@
         <a href="{{ url_for('delete_page') }}">Delete Expense</a>|
         <a href="{{ url_for('edit_page') }}">Edit Expense</a>
     </nav>
+    </div>
     <hr>
     {% block content %}{% endblock %}
 </body>
