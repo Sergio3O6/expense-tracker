@@ -25,3 +25,23 @@ th, td {
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th {
+    background-color: purple;
+    color: white;
+}
+
+td, th {
+    border-bottom: 1px solid #ddd;
+    padding: 12px 8px;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
