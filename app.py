@@ -72,7 +72,7 @@ def edit_page():
     c.execute('SELECT * FROM expenses')
     expenses = c.fetchall()
     conn.close()
-    return render_template('edit_expense.html', expenses=expenses)\
+    return render_template('edit_page.html', expenses=expenses)\
 
 #Edit a single expense
 @app.route('/edit/<int:expense_id>', methods=["GET", "POST"])
@@ -98,7 +98,7 @@ def edit_expense(expense_id):
     c.execute("SELECT * FROM expenses WHERE id=?", (expense_id,))
     expense = c.fetchone()
     conn.close()
-    return render_template("edit_single.html", expense=expense)
+    return render_template("edit_expense.html", expense=expense)
 
 if __name__ == '__main__':
     init_db()
