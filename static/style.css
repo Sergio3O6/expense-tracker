@@ -2,16 +2,32 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
 }
+
+nav {
+    margin-bottom: 20px;
+}
+
+nav a:hover {
+    background-color: #eee;
+}
+
 nav a {
     margin-right: 10px;
     text-decoration: none;
     font-weight: bold;
-    color: purple
+    color: purple;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-right: 8px;
+    border-radius: 4px;
+    transition: .2;
 }
+
 table {
     border-collapse: collapse;
     width: 60%;
 }
+
 th, td {
     padding: 8px;
     text-align: left;
