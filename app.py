@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = "supersecretkey"
 
 #Creates database if one does not exists
 def init_db():
@@ -34,6 +35,9 @@ def add_expense():
         amount = float(request.form['amount'])
         category = request.form['category']
         date = request.form['date']
+        if amount <= 0:
+            flash("Amount must be greater than 0")
+            return redirect(url_for("add_expense"))
 
         conn = sqlite3.connect('expenses.db')
         c = conn.cursor()
@@ -72,7 +76,7 @@ def edit_page():
     c.execute('SELECT * FROM expenses')
     expenses = c.fetchall()
     conn.close()
-    return render_template('edit_page.html', expenses=expenses)\
+    return render_template('edit_page.html', expenses=expenses)
 
 #Edit a single expense
 @app.route('/edit/<int:expense_id>', methods=["GET", "POST"])
@@ -85,6 +89,9 @@ def edit_expense(expense_id):
         amount = float(request.form["amount"])
         category = request.form["category"]
         date = request.form["date"]
+        if amount <= 0:
+            flash("Amount must be greater than 0")
+            return redirect(url_for("add_expense", expense_id=expense_id))
 
         c.execute('''
             UPDATE expenses
@@ -98,7 +105,7 @@ def edit_expense(expense_id):
     c.execute("SELECT * FROM expenses WHERE id=?", (expense_id,))
     expense = c.fetchone()
     conn.close()
-    return render_template("edit_expense.html", expense=expense)
+    return render_template("edit_page.html", expense=expense)
 
 if __name__ == '__main__':
     init_db()

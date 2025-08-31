@@ -130,3 +130,12 @@ input[type=text], input[type=number], input[type=date] {
     outline: none;
     box-shadow: 0 0 3px rgba(128,0,128,.5);
 }
+
+.alert {
+    background-color: #ffcccc;
+    color: #990000;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-weight: bold;
+}
