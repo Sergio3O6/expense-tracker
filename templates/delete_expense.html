@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Delete Expenses</h2>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+    {% for expense in expenses %}
+    <tr>
+        <td>{{ expense[1] }}</td>
+        <td>${{ expense[2] }}</td>
+        <td>{{ expense[3] }}</td>
+        <td>{{ expense[4] }}</td>
+        <td>
+            <button data-id="{{ expense[0] }}" onclick="confirmDelete(this)">❌</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<script>
+function confirmDelete(button) {
+    let expenseId = button.getAttribute('data-id');
+    let confirmed = confirm("Are you sure you want to delete this expense?");
+    if (confirmed) {
+        window.location.href = "/delete/" + expenseId;
+    }
+}
+
+</script>
+{% endblock %}

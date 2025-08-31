@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>|
+        <a href="{{ url_for('add_expense') }}">Add Expense</a>|
+        <a href="{{ url_for('delete_page') }}">Delete Expense</a>|
+        <a href="{{ url_for('edit_page') }}">Edit Expense</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
