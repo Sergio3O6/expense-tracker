@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container">
 <h2>Delete Expenses</h2>
 <table border="1" cellpadding="5">
     <tr>
@@ -21,7 +22,7 @@
     </tr>
     {% endfor %}
 </table>
-
+</div>
 <script>
 function confirmDelete(button) {
     let expenseId = button.getAttribute('data-id');
