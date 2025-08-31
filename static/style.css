@@ -87,3 +87,12 @@ button:hover {
 .edit-btn:hover {
     opacity: 0.85;
 }
+
+input[type=text], input[type=number], input[type=date] {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
