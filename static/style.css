@@ -45,3 +45,45 @@ td, th {
 tr:hover {
     background-color: #f5f5f5;
 }
+
+button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button.add {
+    background-color: purple;
+    color: white;
+}
+
+button.delete {
+    background-color: red;
+    color: white;
+}
+
+button.edit {
+    background-color: blue;
+    color: white
+}
+
+button:hover {
+    opacity: .85;
+}
+
+.edit-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: rgb(78, 78, 185);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.edit-btn:hover {
+    opacity: 0.85;
+}

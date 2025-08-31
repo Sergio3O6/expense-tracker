@@ -16,7 +16,7 @@
         <td>{{ expense[3] }}</td>
         <td>{{ expense[4] }}</td>
         <td>
-            <button data-id="{{ expense[0] }}" onclick="confirmDelete(this)">❌</button>
+            <button class="delete" data-id="{{ expense[0] }}" onclick="confirmDelete(this)">❌</button>
         </td>
     </tr>
     {% endfor %}
