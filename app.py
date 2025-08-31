@@ -105,7 +105,7 @@ def edit_expense(expense_id):
     c.execute("SELECT * FROM expenses WHERE id=?", (expense_id,))
     expense = c.fetchone()
     conn.close()
-    return render_template("edit_page.html", expense=expense)
+    return render_template("edit_single.html", expense=expense)
 
 if __name__ == '__main__':
     init_db()
